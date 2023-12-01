@@ -25,6 +25,8 @@ public class Jatek {
     private static char irany = 'E'; // Kezdetben előre fordul
     private static boolean hasGold = false;
     private static String JatekosNev;
+   private static int lepesszam=0;
+
 
     public Jatek() {
         Scanner scanner = new Scanner(System.in);
@@ -154,13 +156,17 @@ public class Jatek {
         vilag[HosX][HosY] = ' ';
 
         // Mozgás az aktuális irányba
+
         switch (move) {
             case 'W':
             case 'w':
+                lepesszam++;
                 moveForward();
+
                 break;
 
         }
+
 
 
         if (vilag[HosX][HosY] == 'U') {
@@ -193,8 +199,13 @@ public class Jatek {
 
 
         if (hasGold && HosX == KezdoX && HosY == KezdoY) {
-            System.out.println("KIAKRÁOOOLY? Gratulálok, " + JatekosNev + "nyertél");
 
+            System.out.println("KIAKRÁOOOLY? Gratulálok, " + JatekosNev + " nyertél");
+            try {
+                saveToJSON(JatekosNev,lepesszam);
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
             System.exit(0);
         }
 
@@ -261,7 +272,6 @@ public class Jatek {
                 irany = 'N';
                 break;
         }
-        System.out.println("Direction: " + irany);
     }
 
     private static void turnAround() {
@@ -316,10 +326,10 @@ public class Jatek {
 
     }
 
-    private static void saveToJSON(String playerName, int stepCount) throws JSONException {
+    private static void saveToJSON(String jatekosneve, int lepesekszama) throws JSONException {
         JSONObject jsonPlayerData = new JSONObject();
-        jsonPlayerData.put("playerName", playerName);
-        jsonPlayerData.put("stepCount", stepCount);
+        jsonPlayerData.put("Játékos neve:", jatekosneve);
+        jsonPlayerData.put("Lépések száma: ", lepesekszama);
 
         try (FileWriter file = new FileWriter("jatekosAdatok.json")) {
             file.write(jsonPlayerData.toString());
