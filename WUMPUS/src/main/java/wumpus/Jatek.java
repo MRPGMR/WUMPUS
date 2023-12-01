@@ -2,6 +2,17 @@ package wumpus;
 
 import java.util.Scanner;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.io.FileWriter;
+import java.io.IOException;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import java.io.File;
+
 public class Jatek {
 
     private static int PalyaMeret;
@@ -50,11 +61,11 @@ public class Jatek {
             if (mozgas == 'K' || mozgas == 'k') {
                 System.out.println("Vége a játéknak!");
                 break;
-            } else if (mozgas == 'Q' || mozgas == 'q') {
+            } else if (mozgas == 'E' || mozgas == 'e') {
                 // Jobbra forgás esetén változtassa meg az irányt
                 jobbraFordul();
                 PalyaKiiras(); // Pálya kiírása irányváltoztatás után
-            } else if (mozgas == 'E' || mozgas == 'e') {
+            } else if (mozgas == 'Q' || mozgas == 'q') {
                 // Balra forgás esetén változtassa meg az irányt
                 balraFordul();
                 PalyaKiiras(); // Pálya kiírása irányváltoztatás után
@@ -183,8 +194,10 @@ public class Jatek {
 
         if (hasGold && HosX == KezdoX && HosY == KezdoY) {
             System.out.println("KIAKRÁOOOLY? Gratulálok, " + JatekosNev + "nyertél");
+
             System.exit(0);
         }
+
     }
 
     private static void moveForward() {
@@ -303,7 +316,26 @@ public class Jatek {
 
     }
 
+    private static void saveToJSON(String playerName, int stepCount) throws JSONException {
+        JSONObject jsonPlayerData = new JSONObject();
+        jsonPlayerData.put("playerName", playerName);
+        jsonPlayerData.put("stepCount", stepCount);
+
+        try (FileWriter file = new FileWriter("jatekosAdatok.json")) {
+            file.write(jsonPlayerData.toString());
+            file.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public static void main(String[] args) {
         new Jatek();
+    }{
+
     }
+
+
 }
+
