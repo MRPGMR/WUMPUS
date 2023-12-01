@@ -1,4 +1,4 @@
-package org.example;
+package wumpus;
 
 import java.util.Scanner;
 
@@ -294,8 +294,7 @@ public class Jatek {
                 if (vilag[NyilX][NyilY] == 'U') {
                     System.out.println("Meggyilkoltad a wumpust!");
                     vilag[NyilX][NyilY] = 'X';
-                    break;
-                }
+                    break;                }
 
             }
         }
