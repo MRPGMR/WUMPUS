@@ -74,7 +74,7 @@ public class Jatek {
         int PalyaMeret = Jatek.PalyaMeret + 2;
         vilag = new char[PalyaMeret][PalyaMeret];
 
-        // Initialize the world with walls and empty cells
+        // Pálya feltöltése falakkal és üres helyekkel
         for (int i = 0; i < PalyaMeret; i++) {
             for (int j = 0; j < PalyaMeret; j++) {
                 if (i == 0 || i == PalyaMeret - 1 || j == 0 || j == PalyaMeret - 1) {
@@ -126,7 +126,7 @@ public class Jatek {
     }
 
     private static void PalyaKiiras() {
-        // Print the current state of the world
+        //A jelenlegi pálya kiiratása
         for (int i = 0; i < vilag.length; i++) {
             for (int j = 0; j < vilag.length; j++) {
                 System.out.print(vilag[i][j] + " ");
@@ -294,7 +294,8 @@ public class Jatek {
                 if (vilag[NyilX][NyilY] == 'U') {
                     System.out.println("Meggyilkoltad a wumpust!");
                     vilag[NyilX][NyilY] = 'X';
-                    break;                }
+                    break;
+                }
 
             }
         }
