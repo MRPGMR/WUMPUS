@@ -2,7 +2,7 @@ package wumpus;
 
 import org.json.JSONException;
 
-public class metódusok {
+public class alkotoelemek {
     public static int palyaMeret;
 
     public static char[][] vilag;
@@ -10,7 +10,7 @@ public class metódusok {
     public static int HosY;
     public static int KezdoX;
     public static int KezdoY;
-    static int WumpusokSzama;
+    public static int WumpusokSzama;
     public static int NyilakSzama;
     public static char irany = 'E'; // Kezdetben előre fordul
     public static boolean hasGold = false;
@@ -18,7 +18,7 @@ public class metódusok {
     private static int lepesszam = 0;
     private static Adatbazis adatbazis;
 
-    static void palyaInicializalas() {
+    public static void palyaInicializalas() {
         // A pálya mérete a falak közötti területtel
         int PalyaMeret = Jatek.palyaMeret + 2;
         vilag = new char[PalyaMeret][PalyaMeret];
@@ -34,7 +34,7 @@ public class metódusok {
             }
         }
 
-        // Place the hero in an empty random position
+
         do {
             HosX = (int) (Math.random() * (Jatek.palyaMeret)) + 1;
             HosY = (int) (Math.random() * (Jatek.palyaMeret)) + 1;

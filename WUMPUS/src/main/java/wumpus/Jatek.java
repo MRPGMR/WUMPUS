@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import org.json.JSONException;
 
-public class Jatek extends metódusok {
+public class Jatek extends alkotoelemek {
 
 
     public Jatek() throws JSONException {
