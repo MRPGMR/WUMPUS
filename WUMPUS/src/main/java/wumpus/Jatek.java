@@ -10,13 +10,14 @@ public class Jatek {
     private static char[][] vilag;
     private static int HosX, HosY;
     private static int KezdoX, KezdoY;
-    private static int AranyX, AranyY;
     private static int WumpusokSzama;
     private static int NyilakSzama;
     private static char irany = 'E'; // Kezdetben előre fordul
     private static boolean hasGold = false;
     private static String JatekosNev;
     private static int lepesszam = 0;
+
+
 
 
     public Jatek() throws JSONException {
@@ -47,7 +48,6 @@ public class Jatek {
         PalyaKiiras();
         System.out.println("Jó játékot! Sok szerencsét!");
 
-
         while (true) {
             System.out.println("Az irányok az égtájak angol kezdőbetűi,de az egyszerűség kedvéért:\n \t| N=Fel | E=JOBBRA | S=LE | W=BALRA | ");
             System.out.println("A |W| billentyű lenyomásával mozogsz,A |K| betűvel kilépsz, |Q|/|E| betűvel fordulsz, |L| betűvel lősz ");
@@ -75,6 +75,8 @@ public class Jatek {
             }
         }
     }
+
+
 
     private static void palyaInicializalas() {
         // A pálya mérete a falak közötti területtel
@@ -124,19 +126,21 @@ public class Jatek {
 
         //ARANY VÉLETLENSZERŰ ELHELYEZÉSE
 
+        int aranyX;
+        int aranyY;
         do {
-            AranyX = (int) (Math.random() * (Jatek.PalyaMeret)) + 1;
-            AranyY = (int) (Math.random() * (Jatek.PalyaMeret)) + 1;
-        } while (vilag[AranyX][AranyY] == 'W' || (AranyX == HosX && AranyY == HosY));
+            aranyX = (int) (Math.random() * (Jatek.PalyaMeret)) + 1;
+            aranyY = (int) (Math.random() * (Jatek.PalyaMeret)) + 1;
+        } while (vilag[aranyX][aranyY] == 'W' || (aranyX == HosX && aranyY == HosY));
 
-        vilag[AranyX][AranyY] = 'G';
+        vilag[aranyX][aranyY] = 'G';
     }
 
     private static void PalyaKiiras() {
         //A jelenlegi pálya kiiratása
-        for (int i = 0; i < vilag.length; i++) {
+        for (char[] chars : vilag) {
             for (int j = 0; j < vilag.length; j++) {
-                System.out.print(vilag[i][j] + " ");
+                System.out.print(chars[j] + " ");
             }
             System.out.println();
         }
@@ -152,14 +156,10 @@ public class Jatek {
         // Mozgás az aktuális irányba
 
         switch (move) {
-            case 'W':
-            case 'w':
+            case 'W', 'w' -> {
                 lepesszam++;
                 moveForward();
-                JSONMento.saveToJSON(JatekosNev, lepesszam, jelenlegiPalya());
-
-                break;
-
+            }
         }
 
 
@@ -201,49 +201,42 @@ public class Jatek {
         }
 
 
+        JSONMento.saveToJSON(JatekosNev, lepesszam, jelenlegiPalya());
     }
 
     private static void moveForward() {
         // Mozgás az aktuális irányba
         switch (irany) {
-            case 'N':
+            case 'N' -> {
                 if (HosX > 1 && vilag[HosX - 1][HosY] != 'W') {
                     HosX--;
                 }
-                break;
-            case 'E':
+            }
+            case 'E' -> {
                 if (HosY < PalyaMeret && vilag[HosX][HosY + 1] != 'W') {
                     HosY++;
                 }
-                break;
-            case 'S':
+            }
+            case 'S' -> {
                 if (HosX < PalyaMeret && vilag[HosX + 1][HosY] != 'W') {
                     HosX++;
                 }
-                break;
-            case 'W':
+            }
+            case 'W' -> {
                 if (HosY > 1 && vilag[HosX][HosY - 1] != 'W') {
                     HosY--;
                 }
-                break;
+            }
         }
     }
 
     private static void balraFordul() {
         // Balra forgás esetén változtassa meg az irányt
         switch (irany) {
-            case 'N':
-                irany = 'W';
-                break;
-            case 'E':
-                irany = 'N';
-                break;
-            case 'S':
-                irany = 'E';
-                break;
-            case 'W':
-                irany = 'S';
-                break;
+            case 'N' -> irany = 'W';
+            case 'E' -> irany = 'N';
+            case 'S' -> irany = 'E';
+            case 'W' -> irany = 'S';
         }
         System.out.println("Irány: " + irany);
     }
@@ -251,18 +244,10 @@ public class Jatek {
     private static void jobbraFordul() {
 
         switch (irany) {
-            case 'N':
-                irany = 'E';
-                break;
-            case 'E':
-                irany = 'S';
-                break;
-            case 'S':
-                irany = 'W';
-                break;
-            case 'W':
-                irany = 'N';
-                break;
+            case 'N' -> irany = 'E';
+            case 'E' -> irany = 'S';
+            case 'S' -> irany = 'W';
+            case 'W' -> irany = 'N';
         }
     }
 
@@ -279,18 +264,10 @@ public class Jatek {
 
             while (true) {
                 switch (irany) {
-                    case 'N':
-                        NyilX--;
-                        break;
-                    case 'E':
-                        NyilY++;
-                        break;
-                    case 'S':
-                        NyilX++;
-                        break;
-                    case 'W':
-                        NyilY--;
-                        break;
+                    case 'N' -> NyilX--;
+                    case 'E' -> NyilY++;
+                    case 'S' -> NyilX++;
+                    case 'W' -> NyilY--;
                 }
 
                 // Ha a nyíl eléri a pálya szélét, akkor eltűnik
@@ -311,7 +288,6 @@ public class Jatek {
 
 
     }
-
 
     public static String[] jelenlegiPalya() {
         String[] palya = new String[PalyaMeret + 2];
@@ -334,9 +310,7 @@ public class Jatek {
         new Jatek();
     }
 
-    {
 
-    }
 
 
 }

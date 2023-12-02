@@ -18,7 +18,7 @@ public class JSONMento {
         for (String sor : palyaAdatok) {
             palyaArray.put(sor);
         }
-        jsonPlayerData.put("Pálya", palyaArray);
+        jsonPlayerData.put("A győzelem pillanata:", palyaArray);
 
         try (FileWriter file = new FileWriter("jatekosAdatok.json")) {
             file.write(jsonPlayerData.toString(4)); // A szép formázásért: toString(4)
