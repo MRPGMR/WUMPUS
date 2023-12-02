@@ -1,1 +1,14 @@
-{"Játékos neve:":"kicsi","Lépések száma: ":8}
+{
+    "Játékos neve:": "patrik",
+    "Pálya": [
+        "W W W W W W W W ",
+        "W       P P P W ",
+        "W         P   W ",
+        "W   U         W ",
+        "W             W ",
+        "W             W ",
+        "W P         P W ",
+        "W W W W W W W W "
+    ],
+    "Lépések száma: ": 8
+}

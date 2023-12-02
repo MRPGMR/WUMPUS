@@ -3,15 +3,6 @@ package wumpus;
 import java.util.Scanner;
 
 import org.json.JSONException;
-import org.json.JSONObject;
-import java.io.FileWriter;
-import java.io.IOException;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import java.io.File;
 
 public class Jatek {
 
@@ -25,10 +16,10 @@ public class Jatek {
     private static char irany = 'E'; // Kezdetben előre fordul
     private static boolean hasGold = false;
     private static String JatekosNev;
-   private static int lepesszam=0;
+    private static int lepesszam = 0;
 
 
-    public Jatek() {
+    public Jatek() throws JSONException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Üdvözöllek a Wumpus Játékban");
         System.out.println("Kérlek add meg a játékosneved");
@@ -55,9 +46,11 @@ public class Jatek {
         palyaInicializalas();
         PalyaKiiras();
         System.out.println("Jó játékot! Sok szerencsét!");
+
+
         while (true) {
             System.out.println("Az irányok az égtájak angol kezdőbetűi,de az egyszerűség kedvéért:\n \t| N=Fel | E=JOBBRA | S=LE | W=BALRA | ");
-            System.out.println("A |W| billentyű lenyomásával mozogsz,A |K| betűvel kilépsz, |Q|/|E| betűvel fordulsz,|S| betűvel megfordulsz |L| betűvel lősz ");
+            System.out.println("A |W| billentyű lenyomásával mozogsz,A |K| betűvel kilépsz, |Q|/|E| betűvel fordulsz, |L| betűvel lősz ");
             char mozgas = scanner.next().charAt(0);
 
             if (mozgas == 'K' || mozgas == 'k') {
@@ -78,6 +71,7 @@ public class Jatek {
             } else {
                 Mozogas(mozgas);
                 PalyaKiiras();
+
             }
         }
     }
@@ -147,11 +141,11 @@ public class Jatek {
             System.out.println();
         }
         System.out.println("Irány: " + irany); // Kiírja az aktuális irányt
-        System.out.println("Arrows: " + NyilakSzama); // Kiírja a nyilak számát
+        System.out.println("Nyilak: " + NyilakSzama); // Kiírja a nyilak számát
         System.out.println();
     }
 
-    private static void Mozogas(char move) {
+    private static void Mozogas(char move) throws JSONException {
 
         vilag[HosX][HosY] = ' ';
 
@@ -162,11 +156,11 @@ public class Jatek {
             case 'w':
                 lepesszam++;
                 moveForward();
+                JSONMento.saveToJSON(JatekosNev, lepesszam, jelenlegiPalya());
 
                 break;
 
         }
-
 
 
         if (vilag[HosX][HosY] == 'U') {
@@ -201,13 +195,11 @@ public class Jatek {
         if (hasGold && HosX == KezdoX && HosY == KezdoY) {
 
             System.out.println("KIAKRÁOOOLY? Gratulálok, " + JatekosNev + " nyertél");
-            try {
-                saveToJSON(JatekosNev,lepesszam);
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
-            }
+
             System.exit(0);
+
         }
+
 
     }
 
@@ -274,12 +266,6 @@ public class Jatek {
         }
     }
 
-    private static void turnAround() {
-        // Fordulás 180 fokkal (két lépés balra)
-        balraFordul();
-        balraFordul();
-    }
-
     private static void NyilKiloves() {
         // Lövés esetén csökkentse a nyilak számát
         if (NyilakSzama > 0) {
@@ -326,23 +312,29 @@ public class Jatek {
 
     }
 
-    private static void saveToJSON(String jatekosneve, int lepesekszama) throws JSONException {
-        JSONObject jsonPlayerData = new JSONObject();
-        jsonPlayerData.put("Játékos neve:", jatekosneve);
-        jsonPlayerData.put("Lépések száma: ", lepesekszama);
 
-        try (FileWriter file = new FileWriter("jatekosAdatok.json")) {
-            file.write(jsonPlayerData.toString());
-            file.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
+    public static String[] jelenlegiPalya() {
+        String[] palya = new String[PalyaMeret + 2];
+
+        // Pálya felépítése soronként
+        for (int i = 0; i < PalyaMeret + 2; i++) {
+            StringBuilder sor = new StringBuilder();
+            for (int j = 0; j < PalyaMeret + 2; j++) {
+                sor.append(vilag[i][j]).append(" ");
+            }
+            palya[i] = sor.toString();
         }
 
+        return palya;
     }
 
-    public static void main(String[] args) {
+
+
+    public static void main(String[] args) throws JSONException {
         new Jatek();
-    }{
+    }
+
+    {
 
     }
 
