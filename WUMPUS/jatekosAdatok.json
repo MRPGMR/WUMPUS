@@ -1,14 +1,15 @@
 {
-    "Játékos neve:": "fsa",
+    "Játékos neve:": "asd",
     "A győzelem pillanata:": [
-        "W W W W W W W W ",
-        "W             W ",
-        "W             W ",
-        "W     P   P   W ",
-        "W       P P   W ",
-        "W U   P     P W ",
-        "W       H     W ",
-        "W W W W W W W W "
+        "W W W W W W W W W ",
+        "W   P P     P   W ",
+        "W   P     U     W ",
+        "W     P         W ",
+        "W           H   W ",
+        "W               W ",
+        "W               W ",
+        "W P P           W ",
+        "W W W W W W W W W "
     ],
-    "Lépések száma: ": 10
+    "Lépések száma: ": 1
 }

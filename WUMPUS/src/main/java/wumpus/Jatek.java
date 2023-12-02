@@ -18,6 +18,7 @@ public class Jatek {
     public static boolean hasGold = false;
     private static String JatekosNev;
     private static int lepesszam = 0;
+    private static Adatbazis adatbazis;
 
 
     public Jatek() throws JSONException {
@@ -74,6 +75,7 @@ public class Jatek {
 
             }
         }
+
     }
 
 
@@ -157,7 +159,7 @@ public class Jatek {
         switch (move) {
             case 'W', 'w' -> {
                 lepesszam++;
-                moveForward();
+                elore();
             }
         }
 
@@ -205,7 +207,7 @@ public class Jatek {
 
     }
 
-    private static void moveForward() {
+    private static void elore() {
         // Mozgás az aktuális irányba
         switch (irany) {
             case 'N' -> {

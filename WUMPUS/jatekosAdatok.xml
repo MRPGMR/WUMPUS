@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <JatekosAdatok>
-    <JatekosNeve>fsa</JatekosNeve>
-    <LepesekSzama>10</LepesekSzama>
+    <JatekosNeve>asd</JatekosNeve>
+    <LepesekSzama>1</LepesekSzama>
     <Palya>
-        <Sor>W W W W W W W W </Sor>
-        <Sor>W             W </Sor>
-        <Sor>W             W </Sor>
-        <Sor>W     P   P   W </Sor>
-        <Sor>W       P P   W </Sor>
-        <Sor>W U   P     P W </Sor>
-        <Sor>W       H     W </Sor>
-        <Sor>W W W W W W W W </Sor>
+        <Sor>W W W W W W W W W </Sor>
+        <Sor>W   P P     P   W </Sor>
+        <Sor>W   P     U     W </Sor>
+        <Sor>W     P         W </Sor>
+        <Sor>W           H   W </Sor>
+        <Sor>W               W </Sor>
+        <Sor>W               W </Sor>
+        <Sor>W P P           W </Sor>
+        <Sor>W W W W W W W W W </Sor>
     </Palya>
 </JatekosAdatok>

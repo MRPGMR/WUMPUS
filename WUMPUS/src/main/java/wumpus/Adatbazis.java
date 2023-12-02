@@ -19,4 +19,14 @@ public class Adatbazis {
         }
         return null;
     }
+    public void frissites(String nev){
+        try(PreparedStatement st= connection.prepareStatement("INSERT INTO jatekosok (gyozelmi_allapot,id,lepesek_szama,nev) VALUES (?,1) ON DUPLICATE KEY  UPDATE gyozelmek_szama =gyozelmek_szama+1 ");){
+            st.setString(1,nev);
+
+        }    catch (SQLException e) {
+            throw new RuntimeException(e);
+        } {
+
+        }
+    }
 }
