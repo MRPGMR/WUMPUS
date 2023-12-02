@@ -1,23 +1,23 @@
-package wumpus;
 
+package wumpus;
 import java.util.Scanner;
 
 import org.json.JSONException;
 
 public class Jatek {
 
-    private static int PalyaMeret;
-    private static char[][] vilag;
-    private static int HosX, HosY;
+    public static int palyaMeret;
+
+    public static char[][] vilag;
+    public static int HosX;
+    public static int HosY;
     private static int KezdoX, KezdoY;
     private static int WumpusokSzama;
-    private static int NyilakSzama;
-    private static char irany = 'E'; // Kezdetben előre fordul
-    private static boolean hasGold = false;
+    public static int NyilakSzama;
+    public static char irany = 'E'; // Kezdetben előre fordul
+    public static boolean hasGold = false;
     private static String JatekosNev;
     private static int lepesszam = 0;
-
-
 
 
     public Jatek() throws JSONException {
@@ -29,13 +29,13 @@ public class Jatek {
         //PÁLYA BEKÉRÉSE
         do {
             System.out.println("Add meg a pálya méretét (N x N, falakon kívül, 6 és 20 között): ");
-            PalyaMeret = scanner.nextInt();
-        } while (PalyaMeret < 6 || PalyaMeret > 20);
+            palyaMeret = scanner.nextInt();
+        } while (palyaMeret < 6 || palyaMeret > 20);
 
         //WUMPUSOK SZÁMA PÁLYAMÉRET ALAPJÁN
-        if (PalyaMeret <= 8) {
+        if (palyaMeret <= 8) {
             WumpusokSzama = 1;
-        } else if (PalyaMeret <= 14) {
+        } else if (palyaMeret <= 14) {
             WumpusokSzama = 2;
         } else {
             WumpusokSzama = 3;
@@ -55,7 +55,7 @@ public class Jatek {
 
             if (mozgas == 'K' || mozgas == 'k') {
                 System.out.println("Vége a játéknak!");
-                break;
+                System.exit(0);
             } else if (mozgas == 'E' || mozgas == 'e') {
                 // Jobbra forgás esetén változtassa meg az irányt
                 jobbraFordul();
@@ -77,10 +77,9 @@ public class Jatek {
     }
 
 
-
     private static void palyaInicializalas() {
         // A pálya mérete a falak közötti területtel
-        int PalyaMeret = Jatek.PalyaMeret + 2;
+        int PalyaMeret = Jatek.palyaMeret + 2;
         vilag = new char[PalyaMeret][PalyaMeret];
 
         // Pálya feltöltése falakkal és üres helyekkel
@@ -96,8 +95,8 @@ public class Jatek {
 
         // Place the hero in an empty random position
         do {
-            HosX = (int) (Math.random() * (Jatek.PalyaMeret)) + 1;
-            HosY = (int) (Math.random() * (Jatek.PalyaMeret)) + 1;
+            HosX = (int) (Math.random() * (Jatek.palyaMeret)) + 1;
+            HosY = (int) (Math.random() * (Jatek.palyaMeret)) + 1;
         } while (vilag[HosX][HosY] == 'W');
 
         vilag[HosX][HosY] = 'H';
@@ -108,17 +107,17 @@ public class Jatek {
         for (int k = 0; k < WumpusokSzama; k++) {
             int wumpusX, wumpusY;
             do {
-                wumpusX = (int) (Math.random() * (Jatek.PalyaMeret)) + 1;
-                wumpusY = (int) (Math.random() * (Jatek.PalyaMeret)) + 1;
+                wumpusX = (int) (Math.random() * (Jatek.palyaMeret)) + 1;
+                wumpusY = (int) (Math.random() * (Jatek.palyaMeret)) + 1;
             } while (vilag[wumpusX][wumpusY] == 'W' || (wumpusX == HosX && wumpusY == HosY));
 
             vilag[wumpusX][wumpusY] = 'U';
         }
-        for (int i = 1; i <= Jatek.PalyaMeret; i++) {
+        for (int i = 1; i <= Jatek.palyaMeret; i++) {
             int pitX, pitY;
             do {
-                pitX = (int) (Math.random() * (Jatek.PalyaMeret)) + 1;
-                pitY = (int) (Math.random() * (Jatek.PalyaMeret)) + 1;
+                pitX = (int) (Math.random() * (Jatek.palyaMeret)) + 1;
+                pitY = (int) (Math.random() * (Jatek.palyaMeret)) + 1;
             } while (vilag[pitX][pitY] == 'W' || vilag[pitX][pitY] == 'P' || (pitX == HosX && pitY == HosY));
 
             vilag[pitX][pitY] = 'P';
@@ -129,8 +128,8 @@ public class Jatek {
         int aranyX;
         int aranyY;
         do {
-            aranyX = (int) (Math.random() * (Jatek.PalyaMeret)) + 1;
-            aranyY = (int) (Math.random() * (Jatek.PalyaMeret)) + 1;
+            aranyX = (int) (Math.random() * (Jatek.palyaMeret)) + 1;
+            aranyY = (int) (Math.random() * (Jatek.palyaMeret)) + 1;
         } while (vilag[aranyX][aranyY] == 'W' || (aranyX == HosX && aranyY == HosY));
 
         vilag[aranyX][aranyY] = 'G';
@@ -149,7 +148,7 @@ public class Jatek {
         System.out.println();
     }
 
-    private static void Mozogas(char move) throws JSONException {
+    public static void Mozogas(char move) throws JSONException {
 
         vilag[HosX][HosY] = ' ';
 
@@ -215,12 +214,12 @@ public class Jatek {
                 }
             }
             case 'E' -> {
-                if (HosY < PalyaMeret && vilag[HosX][HosY + 1] != 'W') {
+                if (HosY < palyaMeret && vilag[HosX][HosY + 1] != 'W') {
                     HosY++;
                 }
             }
             case 'S' -> {
-                if (HosX < PalyaMeret && vilag[HosX + 1][HosY] != 'W') {
+                if (HosX < palyaMeret && vilag[HosX + 1][HosY] != 'W') {
                     HosX++;
                 }
             }
@@ -253,7 +252,7 @@ public class Jatek {
         }
     }
 
-    private static void NyilKiloves() {
+    public void NyilKiloves() {
         // Lövés esetén csökkentse a nyilak számát
         if (NyilakSzama > 0) {
             NyilakSzama--;
@@ -273,7 +272,7 @@ public class Jatek {
                 }
 
                 // Ha a nyíl eléri a pálya szélét, akkor eltűnik
-                if (NyilX <= 0 || NyilX >= PalyaMeret || NyilY <= 0 || NyilY >= PalyaMeret) {
+                if (NyilX <= 0 || NyilX >= palyaMeret || NyilY <= 0 || NyilY >= palyaMeret) {
                     System.out.println("Nem talált, a nyíl, beleállt a falba!");
                     break;
                 }
@@ -284,20 +283,17 @@ public class Jatek {
                     vilag[NyilX][NyilY] = 'X';
                     break;
                 }
-
             }
         }
-
-
     }
 
     public static String[] jelenlegiPalya() {
-        String[] palya = new String[PalyaMeret + 2];
+        String[] palya = new String[palyaMeret + 2];
 
         // Pálya felépítése soronként
-        for (int i = 0; i < PalyaMeret + 2; i++) {
+        for (int i = 0; i < palyaMeret + 2; i++) {
             StringBuilder sor = new StringBuilder();
-            for (int j = 0; j < PalyaMeret + 2; j++) {
+            for (int j = 0; j < palyaMeret + 2; j++) {
                 sor.append(vilag[i][j]).append(" ");
             }
             palya[i] = sor.toString();
@@ -307,12 +303,9 @@ public class Jatek {
     }
 
 
-
     public static void main(String[] args) throws JSONException {
         new Jatek();
     }
-
-
 
 
 }

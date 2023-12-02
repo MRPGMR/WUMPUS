@@ -1,14 +1,14 @@
 {
-    "Játékos neve:": "patrik",
+    "Játékos neve:": "fsa",
     "A győzelem pillanata:": [
         "W W W W W W W W ",
         "W             W ",
-        "W         P   W ",
-        "W   H     P P W ",
         "W             W ",
-        "W P           W ",
-        "W     P       W ",
+        "W     P   P   W ",
+        "W       P P   W ",
+        "W U   P     P W ",
+        "W       H     W ",
         "W W W W W W W W "
     ],
-    "Lépések száma: ": 11
+    "Lépések száma: ": 10
 }

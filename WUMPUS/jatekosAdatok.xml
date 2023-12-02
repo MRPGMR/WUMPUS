@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <JatekosAdatok>
-    <JatekosNeve>patrik</JatekosNeve>
-    <LepesekSzama>11</LepesekSzama>
+    <JatekosNeve>fsa</JatekosNeve>
+    <LepesekSzama>10</LepesekSzama>
     <Palya>
         <Sor>W W W W W W W W </Sor>
         <Sor>W             W </Sor>
-        <Sor>W         P   W </Sor>
-        <Sor>W   H     P P W </Sor>
         <Sor>W             W </Sor>
-        <Sor>W P           W </Sor>
-        <Sor>W     P       W </Sor>
+        <Sor>W     P   P   W </Sor>
+        <Sor>W       P P   W </Sor>
+        <Sor>W U   P     P W </Sor>
+        <Sor>W       H     W </Sor>
         <Sor>W W W W W W W W </Sor>
     </Palya>
 </JatekosAdatok>
