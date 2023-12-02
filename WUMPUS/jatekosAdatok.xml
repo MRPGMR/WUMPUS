@@ -1,1 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><JatekosAdatok><JatekosNeve>kek</JatekosNeve><LepesekSzama>8</LepesekSzama><Palya><Sor>W W W W W W W W W </Sor><Sor>W       P     U W </Sor><Sor>W   P   P       W </Sor><Sor>W   P P         W </Sor><Sor>W             H W </Sor><Sor>W               W </Sor><Sor>W   P P         W </Sor><Sor>W               W </Sor><Sor>W W W W W W W W W </Sor></Palya></JatekosAdatok>
+<?xml version="1.0" encoding="UTF-8"?>
+<JatekosAdatok>
+    <JatekosNeve>patrik67</JatekosNeve>
+    <LepesekSzama>5</LepesekSzama>
+    <Palya>
+        <Sor>W W W W W W W W </Sor>
+        <Sor>W             W </Sor>
+        <Sor>W         P   W </Sor>
+        <Sor>W   U       P W </Sor>
+        <Sor>W H       P   W </Sor>
+        <Sor>W           P W </Sor>
+        <Sor>W           P W </Sor>
+        <Sor>W W W W W W W W </Sor>
+    </Palya>
+</JatekosAdatok>

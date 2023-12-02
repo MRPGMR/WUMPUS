@@ -15,39 +15,19 @@ import org.w3c.dom.Element;
 public class XMLMento {
     static void saveToXML(String jatekosneve, int lepesekszama, String[] palyaAdatok) {
         try {
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.newDocument();
-
-            // Gyökérelem létrehozása
-            Element rootElement = doc.createElement("JatekosAdatok");
-            doc.appendChild(rootElement);
-
-            // Játékos neve és lépésszáma
-            Element jatekosNeve = doc.createElement("JatekosNeve");
-            jatekosNeve.appendChild(doc.createTextNode(jatekosneve));
-            rootElement.appendChild(jatekosNeve);
-
-            Element lepesekSzama = doc.createElement("LepesekSzama");
-            lepesekSzama.appendChild(doc.createTextNode(String.valueOf(lepesekszama)));
-            rootElement.appendChild(lepesekSzama);
-
-            // Pálya adatok hozzáadása az XML-hez
-            Element palya = doc.createElement("Palya");
+            FileWriter fileWriter = new FileWriter("jatekosAdatok.xml");
+            fileWriter.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+            fileWriter.write("<JatekosAdatok>\n");
+            fileWriter.write("    <JatekosNeve>" + jatekosneve + "</JatekosNeve>\n");
+            fileWriter.write("    <LepesekSzama>" + lepesekszama + "</LepesekSzama>\n");
+            fileWriter.write("    <Palya>\n");
             for (String sor : palyaAdatok) {
-                Element palyaSor = doc.createElement("Sor");
-                palyaSor.appendChild(doc.createTextNode(sor));
-                palya.appendChild(palyaSor);
+                fileWriter.write("        <Sor>" + sor + "</Sor>\n");
             }
-            rootElement.appendChild(palya);
-
-            // XML fájlba mentés
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new FileWriter("jatekosAdatok.xml"));
-            transformer.transform(source, result);
-        } catch (ParserConfigurationException | TransformerException | IOException e) {
+            fileWriter.write("    </Palya>\n");
+            fileWriter.write("</JatekosAdatok>");
+            fileWriter.close();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
