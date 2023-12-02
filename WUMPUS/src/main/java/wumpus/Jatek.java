@@ -202,6 +202,8 @@ public class Jatek {
 
 
         JSONMento.saveToJSON(JatekosNev, lepesszam, jelenlegiPalya());
+        XMLMento.saveToXML(JatekosNev, lepesszam, jelenlegiPalya());
+
     }
 
     private static void moveForward() {
