@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <JatekosAdatok>
-    <JatekosNeve>mukodj</JatekosNeve>
+    <JatekosNeve>MIURUNKJEZUSKRISZTUSKERLEKLEGYENMEGAKETTES</JatekosNeve>
     <LepesekSzama>7</LepesekSzama>
     <Palya>
-        <Sor>W W W W W W W W W W </Sor>
-        <Sor>W     P P         W </Sor>
-        <Sor>W         P P     W </Sor>
-        <Sor>W                 W </Sor>
-        <Sor>W                 W </Sor>
-        <Sor>W   U   P         W </Sor>
-        <Sor>W               P W </Sor>
-        <Sor>W         P   H   W </Sor>
-        <Sor>W   P             W </Sor>
-        <Sor>W W W W W W W W W W </Sor>
+        <Sor>W W W W W W W W W </Sor>
+        <Sor>W P             W </Sor>
+        <Sor>W               W </Sor>
+        <Sor>W       P     P W </Sor>
+        <Sor>W P             W </Sor>
+        <Sor>W               W </Sor>
+        <Sor>W H       P P P W </Sor>
+        <Sor>W               W </Sor>
+        <Sor>W W W W W W W W W </Sor>
     </Palya>
 </JatekosAdatok>
