@@ -2,6 +2,7 @@ package wumpus;
 
 import java.io.FileWriter;
 import java.io.IOException;
+
 public class XMLMento {
     static void saveToXML(String jatekosneve, int lepesekszama, String[] palyaAdatok) {
         try {
@@ -21,5 +22,6 @@ public class XMLMento {
             e.printStackTrace();
         }
     }
+
 }
 

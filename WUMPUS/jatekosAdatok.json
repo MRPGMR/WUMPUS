@@ -1,15 +1,16 @@
 {
-    "Játékos neve:": "asd",
+    "Játékos neve:": "mukodj",
     "A győzelem pillanata:": [
-        "W W W W W W W W W ",
-        "W   P P     P   W ",
-        "W   P     U     W ",
-        "W     P         W ",
-        "W           H   W ",
-        "W               W ",
-        "W               W ",
-        "W P P           W ",
-        "W W W W W W W W W "
+        "W W W W W W W W W W ",
+        "W     P P         W ",
+        "W         P P     W ",
+        "W                 W ",
+        "W                 W ",
+        "W   U   P         W ",
+        "W               P W ",
+        "W         P   H   W ",
+        "W   P             W ",
+        "W W W W W W W W W W "
     ],
-    "Lépések száma: ": 1
+    "Lépések száma: ": 7
 }
